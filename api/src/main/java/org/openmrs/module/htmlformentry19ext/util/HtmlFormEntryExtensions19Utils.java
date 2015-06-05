@@ -186,6 +186,7 @@ public class HtmlFormEntryExtensions19Utils {
 
     public static List<ProviderStub> getProviderStubs(Collection<Provider> providers,String searchParam,
                                                       MatchMode mode) {
+<<<<<<< HEAD
         if(mode != null) {
             Transformer<Provider, ProviderStub> transformer = new ProviderTransformer();
             switch (mode) {
@@ -198,6 +199,18 @@ public class HtmlFormEntryExtensions19Utils {
             }
         }
         return getProviderStubs(providers);
+=======
+        Transformer<Provider, ProviderStub> transformer = new ProviderTransformer();
+        if(mode != null) {
+            switch (mode) {
+                case END:
+                    return (List<ProviderStub>) transformer.transform(providers, endsWith(searchParam));
+                case ANYWHERE:
+                    return getProviderStubs(providers);
+            }
+        }
+        return (List<ProviderStub>) transformer.transform(providers,startsWith(searchParam));
+>>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
     }
 
     private static Predicate<Provider> startsWith(final String param) {
@@ -205,6 +218,7 @@ public class HtmlFormEntryExtensions19Utils {
             @Override
             public boolean test(Provider provider) {
                 String identifier = provider.getIdentifier();
+<<<<<<< HEAD
                 String lowerCaseParam = param.toLowerCase();
                 if(identifier.toLowerCase().startsWith(lowerCaseParam)) return true;
                 if(provider.getPerson() != null) {
@@ -213,13 +227,26 @@ public class HtmlFormEntryExtensions19Utils {
                         if (name.getGivenName().toLowerCase().startsWith(lowerCaseParam) ||
                                 name.getFamilyName().toLowerCase().startsWith(lowerCaseParam) ||
                                 name.getMiddleName().toLowerCase().startsWith(lowerCaseParam))
+=======
+                if(StringUtils.startsWithIgnoreCase(identifier,param)) return true;
+                if(provider.getPerson() != null) {
+                    PersonName name = provider.getPerson().getPersonName();
+                    if (name != null) {
+                        if (StringUtils.startsWithIgnoreCase(name.getGivenName(),param) ||
+                                StringUtils.startsWithIgnoreCase(name.getFamilyName(),param) ||
+                                StringUtils.startsWithIgnoreCase(name.getMiddleName(), param))
+>>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
                             return true;
                     }
                 }
                 //Check the provider name (From provider table)
                 String[] names = provider.getName().split(" ");
                 for(String n:names) {
+<<<<<<< HEAD
                     if (n.toLowerCase().startsWith(lowerCaseParam)) return true;
+=======
+                    if (StringUtils.startsWithIgnoreCase(n,param)) return true;
+>>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
                 }
                 return false;
             }
@@ -230,6 +257,7 @@ public class HtmlFormEntryExtensions19Utils {
         return new Predicate<Provider>() {
             @Override
             public boolean test(Provider provider) {
+<<<<<<< HEAD
                 String lowerCaseParam = param.toLowerCase();
                 String identifier = provider.getIdentifier();
                 if(identifier.toLowerCase().endsWith(lowerCaseParam)) return true;
@@ -239,13 +267,27 @@ public class HtmlFormEntryExtensions19Utils {
                         if (name.getGivenName().toLowerCase().endsWith(lowerCaseParam) ||
                                 name.getFamilyName().toLowerCase().endsWith(lowerCaseParam) ||
                                 name.getMiddleName().toLowerCase().endsWith(lowerCaseParam))
+=======
+                String identifier = provider.getIdentifier();
+                if(StringUtils.endsWithIgnoreCase(identifier, param)) return true;
+                if(provider.getPerson() != null) {
+                    PersonName name = provider.getPerson().getPersonName();
+                    if (name != null) {
+                        if (StringUtils.endsWithIgnoreCase(name.getGivenName(),param) ||
+                                StringUtils.endsWithIgnoreCase(name.getFamilyName(),param) ||
+                                StringUtils.endsWithIgnoreCase(name.getMiddleName(), param))
+>>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
                             return true;
                     }
                 }
                 //Check the provider name (From provider table
                 String[] names = provider.getName().split(" ");
                 for(String n:names) {
+<<<<<<< HEAD
                     if (n.toLowerCase().endsWith(lowerCaseParam)) return true;
+=======
+                    if (StringUtils.endsWithIgnoreCase(n, param)) return true;
+>>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
                 }
                 return false;
             }
