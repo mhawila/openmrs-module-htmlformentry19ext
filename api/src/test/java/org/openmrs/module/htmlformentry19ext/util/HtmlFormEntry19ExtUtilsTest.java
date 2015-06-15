@@ -2,7 +2,6 @@ package org.openmrs.module.htmlformentry19ext.util;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openmrs.Person;
 import org.openmrs.PersonName;
 import org.openmrs.Provider;
 import org.openmrs.api.ProviderService;
@@ -10,10 +9,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry19ext.element.ProviderStub;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
->>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;

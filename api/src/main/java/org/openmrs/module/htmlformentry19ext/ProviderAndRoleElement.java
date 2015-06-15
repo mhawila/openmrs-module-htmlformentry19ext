@@ -80,11 +80,7 @@ public class ProviderAndRoleElement implements HtmlGeneratorElement, FormSubmiss
                         providerMatchMode = MatchMode.valueOf(value);
                     }
                 }catch (IllegalArgumentException ie) {
-<<<<<<< HEAD
-                    providerMatchMode = MatchMode.ANYWHERE;
-=======
                     //Do nothing
->>>>>>> 9b9194e... HTML-384: Added support for ajax autocomplete provider to EncounterProviderAndRole tag. To accomplish this I have added support for two attributes.
                 }
             }
         }
